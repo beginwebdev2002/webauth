@@ -27,6 +27,9 @@ jobs:
 
       - name: copy public folder
         run: cp -R ./public ./dist
+      
+      - name: copy package json
+        run: cp ./package.json ./dist
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
