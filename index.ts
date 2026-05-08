@@ -41,7 +41,7 @@ const MemoryStore = memoryStore(session);
 const {
   ENABLE_CONFORMANCE,
   ENABLE_HTTPS,
-  RP_ID = 'localhost',
+  RP_ID,
 } = process.env;
 
 app.use(express.static('./public/'));
@@ -79,11 +79,11 @@ if (ENABLE_CONFORMANCE === 'true') {
  * RP ID represents the "scope" of websites on which a credential should be usable. The Origin
  * represents the expected URL from which registration or authentication occurs.
  */
-export const rpID = process.env.RP_ID || 'localhost';
+export const rpID = RP_ID || 'localhost';
 // This value is set at the bottom of page as part of server initialization (the empty string is
 // to appease TypeScript until we determine the expected origin based on whether or not HTTPS
 // support is enabled)
-export let expectedOrigin = 'webauth-l4xa.onrender.com';
+export let expectedOrigin = 'https://webauth-l4xa.onrender.com';
 
 /**
  * 2FA and Passwordless WebAuthn flows expect you to be able to uniquely identify the user that
@@ -147,7 +147,6 @@ app.get('/generate-registration-options', async (req, res) => {
      * Support the two most common algorithms: ES256, and RS256
      */
     supportedAlgorithmIDs: [-7, -257],
-    origin: expectedOrigin,
   };
 
   const options = await generateRegistrationOptions(opts);
