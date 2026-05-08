@@ -281,7 +281,7 @@ if (ENABLE_HTTPS) {
     });
 }
 else {
-    const host = '127.0.0.1';
+    const host = '0.0.0.0';
     const port = 8000;
     exports.expectedOrigin = `http://localhost:${port}`;
     http_1.default.createServer(app).listen(port, host, () => {
