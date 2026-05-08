@@ -147,6 +147,7 @@ app.get('/generate-registration-options', async (req, res) => {
      * Support the two most common algorithms: ES256, and RS256
      */
     supportedAlgorithmIDs: [-7, -257],
+    origin: expectedOrigin,
   };
 
   const options = await generateRegistrationOptions(opts);
