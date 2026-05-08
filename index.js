@@ -53,7 +53,7 @@ dotenv_1.default.config();
 const server_1 = require("@simplewebauthn/server");
 const app = (0, express_1.default)();
 const MemoryStore = (0, memorystore_1.default)(express_session_1.default);
-const { ENABLE_CONFORMANCE, ENABLE_HTTPS, RP_ID = 'localhost', } = process.env;
+const { ENABLE_CONFORMANCE, ENABLE_HTTPS, RP_ID, } = process.env;
 app.use(express_1.default.static('./public/'));
 app.use(express_1.default.json());
 app.use((0, express_session_1.default)({
@@ -83,11 +83,11 @@ if (ENABLE_CONFORMANCE === 'true') {
  * RP ID represents the "scope" of websites on which a credential should be usable. The Origin
  * represents the expected URL from which registration or authentication occurs.
  */
-exports.rpID = process.env.RP_ID || 'localhost';
+exports.rpID = RP_ID || 'localhost';
 // This value is set at the bottom of page as part of server initialization (the empty string is
 // to appease TypeScript until we determine the expected origin based on whether or not HTTPS
 // support is enabled)
-exports.expectedOrigin = 'webauth-l4xa.onrender.com';
+exports.expectedOrigin = 'https://webauth-l4xa.onrender.com';
 /**
  * 2FA and Passwordless WebAuthn flows expect you to be able to uniquely identify the user that
  * performs registration or authentication. The user ID you specify here should be your internal,
