@@ -83,11 +83,11 @@ if (ENABLE_CONFORMANCE === 'true') {
  * RP ID represents the "scope" of websites on which a credential should be usable. The Origin
  * represents the expected URL from which registration or authentication occurs.
  */
-exports.rpID = RP_ID;
+exports.rpID = process.env.RP_ID || 'localhost';
 // This value is set at the bottom of page as part of server initialization (the empty string is
 // to appease TypeScript until we determine the expected origin based on whether or not HTTPS
 // support is enabled)
-exports.expectedOrigin = '';
+exports.expectedOrigin = 'webauth-l4xa.onrender.com';
 /**
  * 2FA and Passwordless WebAuthn flows expect you to be able to uniquely identify the user that
  * performs registration or authentication. The user ID you specify here should be your internal,
